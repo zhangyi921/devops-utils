@@ -1,5 +1,4 @@
 'use client';
-import Link from "next/link";
 import { useState } from "react";
 import { ConnectionTestPayload } from "../api/connection-test/route";
 
@@ -44,19 +43,18 @@ export default function Home() {
                 <div style={{ width: 500, margin: 10, display: "flex", flexDirection: "column" }}>
                     <h3>HTTP</h3>
                     <textarea value={httpTest} onChange={e => setHttpTest(e.target.value)} rows={10}></textarea>
-                    <button onClick={testHttp} > Test </button>
+                    <button onClick={testHttp} > Test 🚀</button>
                 </div>
                 <div style={{ width: 500, margin: 10, display: "flex", flexDirection: "column" }}>
                     <h3>TCP</h3>
                     <textarea value={tcpTest} onChange={e => setTcpTest(e.target.value)} rows={10}></textarea>
-                    <button onClick={testTcp} > Test </button>
+                    <button onClick={testTcp} > Test 🚀</button>
                 </div>
             </div>
             <div style={{ maxWidth:1020, margin: 10, display: "flex", flexDirection: "column" }}>
 
                 <h2>Test result</h2>
                 <textarea cols={100} rows={30} value={JSON.stringify(testResult, null, 2)} readOnly></textarea>
-                <Link href="/">Home</Link>
             </div>
         </div>
     );

@@ -32,10 +32,14 @@ export async function POST(req: NextApiRequest, res: NextApiResponse) {
                         body: body.body ? JSON.stringify(body.body) : undefined
                     }
                 );
-                const text = await response.text();
+                const data = await response.text();
+                let json_data;
+                try {
+                    json_data = JSON.parse(data);
+                } catch (_) {}
                 return NextResponse.json({
                     message: `Server received response from ${body.target}`,
-                    response: text,
+                    response: json_data || data,
                     responseHeaders: Array.from(response.headers.keys()).sort().map(header => ({ name: header, value: response.headers.get(header) }))
                 });
             case "tcp":

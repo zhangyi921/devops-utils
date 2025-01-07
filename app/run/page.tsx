@@ -1,5 +1,4 @@
 'use client';
-import Link from "next/link";
 import { useState } from "react";
 
 export default function Home() {
@@ -39,7 +38,6 @@ export default function Home() {
 
                 </tbody>
             </table>
-            <Link href="/">Home</Link>
             <style jsx>{`
           tr:nth-child(odd) {
             background-color:rgb(202, 202, 202);
