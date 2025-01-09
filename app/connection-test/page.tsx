@@ -19,6 +19,7 @@ const TcpTestDefault: ConnectionTestPayload = {
 export default function Home() {
     const [httpTest, setHttpTest] = useState<string>(JSON.stringify(HttptestDefault, null, 2));
     const [tcpTest, setTcpTest] = useState<string>(JSON.stringify(TcpTestDefault, null, 2));
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const [testResult, setTestResult] = useState<any>({});
     const testHttp = async () => {
         const response = await fetch("/api/connection-test", {
@@ -38,7 +39,7 @@ export default function Home() {
      };
     return (
         <div>
-            <h2>Test server's network connection</h2>
+            <h2>Test server&rsquo;s network connection</h2>
             <div style={{ display: "flex" }}>
                 <div style={{ width: 500, margin: 10, display: "flex", flexDirection: "column" }}>
                     <h3>HTTP</h3>

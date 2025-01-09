@@ -1,10 +1,10 @@
 import { exec } from 'child_process';
-import type { NextApiRequest, NextApiResponse } from 'next'
-import { NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
 
-export async function POST(req: NextApiRequest, res: NextApiResponse) {
+export async function POST(req: NextRequest) {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const body = await (req as any).json();
-    const result: Object  =  await new Promise((resolve, reject) => {
+    const result: object  =  await new Promise((resolve) => {
         exec(body.command, (error, stdout, stderr) => {
             resolve({ error, stdout, stderr });
         })

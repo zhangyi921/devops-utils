@@ -3,6 +3,7 @@ import { useState } from "react";
 
 export default function Home() {
     const [command, setCommand] = useState('');
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const [commandResult, setCommandResult] = useState<Array<any>>([]);
     const sendCommand = async () => {
         const response = await fetch('/api/run', {

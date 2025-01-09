@@ -1,5 +1,4 @@
 import { headers } from 'next/headers'
-import Link from 'next/link';
 
 export default async function Home() {
   const headersList = await headers()

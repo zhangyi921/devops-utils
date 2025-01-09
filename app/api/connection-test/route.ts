@@ -1,6 +1,4 @@
-import type { NextApiRequest, NextApiResponse } from 'next'
-import { headers } from 'next/headers';
-import { NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
 import { connect } from 'net'
 // export function GET(req: NextApiRequest, res: NextApiResponse) {
 //     return NextResponse.json({ message: "Server received GET request!" });
@@ -11,7 +9,7 @@ export type ConnectionTestPayload = {
     target: string;
     method: "GET" | "POST";
     headers?: { [key: string]: string };
-    body?: Object;
+    body?: object;
 }
     | {
         protocol: "tcp";
@@ -19,8 +17,9 @@ export type ConnectionTestPayload = {
         port: number;
     }
 
-export async function POST(req: NextApiRequest, res: NextApiResponse) {
+export async function POST(req: NextRequest) {
     try {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         const body: ConnectionTestPayload = await (req as any).json();
         switch (body.protocol) {
             case "http":
@@ -36,7 +35,7 @@ export async function POST(req: NextApiRequest, res: NextApiResponse) {
                 let json_data;
                 try {
                     json_data = JSON.parse(data);
-                } catch (_) {}
+                } catch {}
                 return NextResponse.json({
                     message: `Server received response from ${body.target}`,
                     response: json_data || data,
@@ -57,6 +56,7 @@ export async function POST(req: NextApiRequest, res: NextApiResponse) {
                 return NextResponse.json({ message: "Unrecognized protocol in body" });
         }
     } catch (error) {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         return NextResponse.json({ message:  (error as any).message || "Connection failed", error: JSON.stringify(error) });
     }
 }
